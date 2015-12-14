@@ -1,0 +1,1272 @@
+
+/* web dev 2 final assignment authored by Ellen Thomson with help from of http://tympanus.net/codrops/2012/08/08/circle-hover-effects-with-css-transitions/ */
+
+@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700);
+
+@font-face {
+	font-family: 'codropsicons';
+	src:url('../fonts/codropsicons/codropsicons.eot');
+	src:url('../fonts/codropsicons/codropsicons.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/codropsicons/codropsicons.woff') format('woff'),
+		url('../fonts/codropsicons/codropsicons.ttf') format('truetype'),
+		url('../fonts/codropsicons/codropsicons.svg#codropsicons') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+*, *:after, *:before { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+body, html { font-size: 15px; padding: 0; margin: 0;}
+
+/* Clearfix hack by Nicolas Gallagher: http://nicolasgallagher.com/micro-clearfix-hack/ */
+.clearfix:before, .clearfix:after { content: " "; display: table; }
+.clearfix:after { clear: both; }
+
+body {
+	color: #89867e;
+	background: #f9f9f9;
+}
+
+a {
+	color: #333;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #fff;
+}
+
+.main,
+.container > header {
+	width: 100%;
+	margin: 0 auto;
+}
+
+.main {
+	max-width: 82.667em;
+	min-height: 2em;
+}
+
+
+.container > header {
+	text-align: center;
+	font-size: 16px;
+	padding: 4em 2em 3em;
+}
+
+.container > header h1 {
+	font-size: 2.625em;
+	line-height: 1.3;
+	margin: 0;
+	font-weight: 300;
+}
+
+.container > header span {
+	display: block;
+	font-size: 60%;
+	color: #ceccc6;
+	padding: 0 0 0.6em 0.1em;
+}
+
+/* Header Style */
+.codrops-top {
+	background: #fff;
+	background: rgba(255, 255, 255, 0.4);
+	text-transform: uppercase;
+	position: relative;
+	width: 100%;
+	font-size: 0.7em;
+	line-height: 2.2;
+}
+
+.codrops-top a {
+	padding: 0 1em;
+	letter-spacing: 0.1em;
+	color: #888;
+	display: inline-block;
+}
+
+.codrops-top a:hover {
+	background: rgba(255,255,255,0.9);
+}
+
+.codrops-top span.right {
+	float: right;
+}
+
+.codrops-top span.right a {
+	float: left;
+	display: block;
+}
+
+.codrops-icon:before {
+	font-family: 'codropsicons';
+	margin: 0 4px;
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+}
+.codrops-icon-drop:before {
+	content: "\e001";
+}
+.codrops-icon-prev:before {
+	content: "\e004";
+}
+.codrops-icon-archive:before {
+	content: "\e002";
+}
+.codrops-icon-next:before {
+	content: "\e000";
+}
+.codrops-icon-about:before {
+	content: "\e003";
+}
+
+
+
+
+
+/* general */
+
+
+/* 
+body{
+	background-color: #F0F1EB;
+	margin:0;
+	padding:0;
+	
+}
+ */
+
+#wrapper {
+	background-color:#fff;
+	max-width:980px;
+	padding:0 0 0 0%;
+	margin:0 auto;
+}
+/* 
+
+.navigation {
+	font-family: 'proxima_nova_ththin', helvetica, sans-serif;
+    list-style:none;
+    width: 100%;
+    height: 100%;
+    position:fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+}
+ */
+
+#panela {
+	background: rgb(210, 215, 211);
+	padding-bottom: 5%;
+}
+
+
+#panelb {
+	background: #fff;
+	padding-bottom: 5%;
+}
+
+#panelc {
+	background: rgb(210, 215, 211);
+	padding-bottom: 5%;
+}
+
+#paneld {
+	background: rgb(210, 215, 211);
+	padding-bottom: 6%;
+}
+
+
+#menu{
+		font-family: 'proxima_nova_rgbold', helvetica, sans-serif;
+		position:fixed;
+		text-align: left;
+		padding:0;
+		margin:0;
+		float:left;
+		z-index:9999;
+		width: 980px;
+	}
+	
+
+		
+.site-wrap {
+    min-width: 100%;
+    min-height: 100%;
+    background-color: #fff;
+    position: relative;
+    top: 0;
+    bottom: 100%;
+    left: 0;
+    z-index: 1;
+}
+
+
+.site-wrap {
+    /* ...previous styles here... */
+    padding: 0 4em 0 4em;
+
+    background-size: 200%;
+}
+
+.nav-trigger {
+    position: fixed;
+    clip: rect(0, 0, 0, 0);
+}
+
+label[for="nav-trigger"] {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 2;
+}
+
+label[for="nav-trigger"] {
+    /* ... previous styles here... */
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' x='0px' y='0px' width='30px' height='30px' viewBox='0 0 30 30' enable-background='new 0 0 30 30' xml:space='preserve'><rect width='30' height='6'/><rect y='24' width='30' height='6'/><rect y='12' width='30' height='6'/></svg>");
+    background-size: contain;
+}
+
+.nav-trigger:checked + label {
+    left: 215px;
+}
+ 
+.nav-trigger:checked ~ .site-wrap {
+    left: 200px;
+}
+
+.nav-trigger + label, .site-wrap {
+    transition: left 0.2s;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+/* Begin Ellen's code headlines, paragraphs, images 
+=================================*/
+
+
+h1{
+	font-family: 'proxima_nova_ththin', helvetica, sans-serif;
+
+	font-style: normal;
+	font-weight: 400;
+	color:#686E75;
+	font-size:1.75em;
+	line-height:1.5em;
+	padding:2% 2% 2% 2%;
+	margin:0;
+	text-align: left;
+	font-weight:normal;
+}
+
+
+
+h2{
+    font-family: 'proxima_nova_ththin', helvetica, sans-serif;
+	color:#3A3F40;
+	font-size:.25em;
+	padding:0 0 5% 0;
+	margin:0 0 3% 0;
+	text-align: center;
+	font-weight:normal;
+}
+ 
+h3{
+    font-family: 'proxima_nova_ththin', helvetica, sans-serif;
+    text-align: left;
+	color:#686E75;
+	font-size:1em;
+	padding:1% 0 1% 0;
+	margin:0;
+	font-weight:normal;
+}
+
+h4{
+    font-family: 'proxima_nova_ththin', helvetica, sans-serif;
+	font-size:3.75em;
+	line-height:1em;
+	padding:0 0 0 0;
+	margin:2% 0 0 0;
+	text-align: left;
+	color:#686E75;
+	font-weight:normal;
+}
+
+h5{
+    font-family: 'proxima_nova_ththin', helvetica, sans-serif;
+	font-size:2em;
+	line-height:1em;
+	padding:2% 0 1% 3%;
+	margin:0;
+	text-align: left;
+	color:#686E75;
+	font-weight:normal;
+}
+
+h6{
+    font-family: 'proxima_nova_ththin', helvetica, sans-serif;
+    text-align:left;
+	color:#3A3F40;
+	font-size:1.25em;
+	padding:3% 0 1% 0;
+	margin:0;
+	font-weight:normal;
+}
+
+#footer h6{
+    font-family: 'proxima_nova_ththin', helvetica, sans-serif;
+	color:#fff;
+	font-size:.45em;
+	line-height:1.5em;
+	margin:0;
+	text-align:center;
+	font-weight:normal;
+}
+	
+
+	
+ */
+
+p{
+    font-family: 'proxima_nova_ththin', helvetica, sans-serif;
+	color:#484A47;
+	font-size:1.15em;
+	line-height:1.25em;
+	padding:0;
+	margin:0 0 0 0;
+}
+
+img {
+	width:100%;
+	margin:0;
+}
+
+#main img {
+	width:100%;
+	margin:0;
+}
+
+#grid img {
+	padding:0;
+	margin:0;
+	}
+
+#main img {
+	padding:0;
+	margin:0 0 3% 0;
+	}
+
+.videoWrapper {
+	position: relative;
+	padding-bottom: 56.25%; /* 16:9 */
+	padding-top: 25px;
+	height: 0;
+}
+.videoWrapper iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+/* font awesome 
+=================================*/
+
+.fa-linkedin-square {
+	padding:0 1% 0 1%;
+}
+
+
+.fa-facebook {
+	padding:0 1% 0 1%;
+}
+
+.fa-twitter {
+	padding:0 1% 0 1%;
+}
+
+
+.fa-envelope {
+	padding:0 1% 0 1%;
+}
+
+
+.fa-file-text {
+	padding:0 1% 0 1%;
+} 
+
+
+.fa-external-link {
+	padding:0 1% 0 0%;
+}
+
+.fa-pinterest {
+	padding:0 1% 0 1%;
+}
+
+.fa-chevron-up {
+	padding:0 1% 0 0;
+}
+
+.fa-angle-left {
+	padding:0 1% 0 0;
+}
+
+.fa-angle-right {
+	padding:0 1% 0 1%;
+}
+
+
+
+/* hover images fade 
+=================================*/
+
+.project img {
+	opacity:.4;
+
+}
+
+.project img {
+}
+
+.project img:hover{
+		opacity:1.0;
+
+}
+
+
+* {
+  box-sizing: border-box;
+}
+
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+figure {
+  position: relative;
+  padding:0;
+  margin:0;
+  width:100%;
+}
+figcaption {
+  position: absolute;
+  bottom: 0;
+  padding: .5em;
+  margin: 0;
+  width:100%;
+  font-family: 'proxima_nova_ththin', helvetica, sans-serif;
+	color:#fff;
+	font-size:1.25em;
+	text-align:center;
+	border-style: solid;
+    border-width:0px;
+    float:left;
+  background-color:hsla(56, 15%, 75%, 0.74);
+}
+
+
+
+/* links 
+=================================*/
+
+
+/* 
+a:link {    
+	color:#686E75;
+ 	font-family: 'proxima_nova_ththin', helvetica, sans-serif;
+ 	padding:0;
+}
+ */
+
+a:visited {
+color: #686E75;
+}
+
+a:hover {
+    color:#F24B4B;
+}
+
+a:active {
+    color:#D1DBBD;
+} 
+
+
+.anchor a:link {    
+	color:#686E75;
+    font-family: 'proxima_nova_ltlight', helvetica, sans-serif;
+ 	padding:0;
+
+}
+
+.anchor a:visited {    
+	color:#757370;
+    font-family: 'proxima_nova_ltlight', helvetica, sans-serif;
+}
+
+.anchor a:hover {    
+	color:#F24B4B;
+    font-family: 'proxima_nova_ththin', helvetica, sans-serif;
+}
+
+.persist-header a:link {    
+	color:#686E75;
+    font-family:'proxima_nova_rgregular', helvetica, sans-serif;
+    padding:2% 0 2% 0;
+}
+
+.persist-header a:visited {
+        color:#686E75;
+}
+
+.persist-header a:hover {
+        color:#F24B4B;
+}
+
+
+
+
+
+h5, a:link {
+	color: #686E75;
+    text-decoration: none;
+
+}
+h5, a:hover {
+	color:#F24B4B;
+    text-decoration: none;
+}
+
+.introlabel a:visited {
+        color:#91ACB3;
+}
+
+
+
+/* spans 
+=================================*/
+
+.email {
+	color:#686E75;
+  	font-size:1.25em;
+  	font-family: 'proxima_nova_rgbold', helvetica, sans-serif;
+  	text-align: center;
+}
+
+.roles {
+    font-family: 'proxima_nova_rgregular', helvetica, sans-serif;
+    text-align: left;
+	font-size:1em;
+	padding:0;
+	margin:0;
+	}
+	
+.label {
+	color:#686E75;
+	font-size:1.25em;
+}
+
+.introlabel { 
+	font-family: 'proxima_nova_rgregular', helvetica, sans-serif;
+	color:#686E75;
+}
+
+.part2label { 
+ 	font-family: 'proxima_nova_ththin', helvetica, sans-serif;
+	line-height:1em;
+	padding:0 0 2% 0;
+	margin:0;
+	text-align: left;
+	color:#686E75;
+	font-weight:normal;
+}
+
+
+.titles{
+	font-family: 'proxima_nova_ththin', helvetica, sans-serif;
+	font-size:60%;
+	line-height:10px;
+	padding:0;
+	margin:0;
+	color:#FF8C00;
+	}
+		
+.titleplus{
+	font-family: 'proxima_nova_ththin', helvetica, sans-serif;
+	font-size:100%;
+	line-height:10px;
+	padding:0;
+	margin:0;
+	color:pink;
+	}
+		
+.dividerx{
+	font-family: 'proxima_nova_ththin', helvetica, sans-serif;
+	font-size:60%;
+	line-height:10px;
+	padding:0;
+	margin:0;
+	color:pink;
+		}
+		
+.bigx{
+    font-family: 'proxima_nova_ltlight';
+	font-size:130%;
+	line-height:10px;
+	padding:0;
+	margin:0;
+	color:pink;
+	}
+
+
+/* ul and list items 
+=================================*/
+
+.anchor ul{
+	padding:0;
+}
+
+.homeanchor ul{
+	padding:0;
+    text-align:left;
+}
+
+.persist-header ul{
+	padding:0 0 0 0;
+	margin:2% 5% 2% 0;
+	float:left;
+	font-size:.85em;
+	line-height: 2em;
+}
+
+
+.persist-header li {
+    display:inline;
+    padding: 2% 1% 0 2%;
+    float:left;
+}
+
+
+
+
+
+#main ul{
+padding:0;
+margin: 0 0 0 0;
+}
+
+
+
+#main li {
+    display:inline;
+    padding: 0 0 0 2%;
+    font-size:.80em;
+    margin:2% 0 0 1%;
+}
+
+
+.anchor li {
+    display: inline;
+    padding: 0 0 0 0;
+}
+
+.homeanchor li {
+    display: inline;
+    padding: 0 10% 0 10%
+}
+
+
+/* divs and spans, header, social, grid, main, role, projects 
+=================================*/
+
+
+#drippies {
+    font-family: 'proxima_nova_ltlight', helvetica, sans-serif;
+    padding:2% 0 2% 3%;
+    font-size:.85em;
+}
+
+
+#social{
+    font-family: 'proxima_nova_rgbold', helvetica, sans-serif;
+    text-align: right;
+	font-size:1.5em;
+	padding:2% 1% 0 1%;
+	margin:0;
+	width:100%;
+	float:left;
+}
+
+
+#nav{
+    font-family: 'proxima_nova_rgbold', helvetica, sans-serif;
+    text-align: right;
+	font-size:5em;
+	padding:0;
+	margin:2% 0 2% 0;
+	width:100%;
+	float:left;
+}
+
+
+#logo{
+	margin:0%;
+	width:100%;
+	float:left;
+	background-color:#fff;
+
+	
+}
+
+#about{
+    text-align: left;
+	padding:3%;
+	font-size: 1.15em;
+	background-color:#fff;
+	width: 100%;
+	float: right;
+}
+#about img{
+	width:24%;
+	float:left;
+	padding:0 2% 0 0;
+}
+#grid {
+	width:100%;
+	float:left;
+	background-repeat:no-repeat;
+	margin:0;
+	padding:0;
+	background-color:#fff;
+}
+
+#main {
+	width:100%;
+	float:left;
+	background-repeat:no-repeat;
+	margin:0;
+	padding:0;
+	background-color:#fff;
+}
+
+#role {
+	width:100%;
+	float:left;
+	margin:0 0 0 0;
+	padding:1% 3% 3% 3%;
+	background: rgb(210, 215, 211);
+}
+
+#footer{
+    font-family: 'proxima_nova_rgbold', helvetica, sans-serif;
+    text-align: center;
+	padding:2%;
+	width:100%;
+	margin:0 0 0 0;
+	float:left;
+	font-size:3em;
+	line-height: 4em;
+/* 
+	background-image: url("images/cream_pixels.png");
+ */
+	background-repeat: repeat;
+	background: rgb(108, 122, 137);
+}
+
+
+.anchor {
+    font-family: 'proxima_nova_ltlight', helvetica, sans-serif;
+    padding:0;
+    font-size:1em;
+}
+
+.homeanchor {
+    font-family: 'proxima_nova_ltlight', helvetica, sans-serif;
+    background-color:#fff;
+    font-size:.95em;
+}
+
+.project {
+	width:33.33333%;
+	background-color: #DFDFE3;
+	margin:0;
+	padding:0;
+	float:left;
+}
+
+.projectdetail {
+	width:100%;
+	background: rgb(210, 215, 211);
+	margin:0;
+	padding:3%;
+	float:left;
+}
+
+.sidebar {
+	width:100%;
+	height:100%;
+	float:left;
+	margin:0 0 0 0;
+	padding:0;
+}
+
+
+	
+	*/
+	
+/* webkit resizing 
+=================================*/
+	
+	
+	* { 
+  		-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+      	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  		box-sizing: border-box;         /* Opera/IE 8+ */
+		}
+
+
+
+
+
+/* CLEARING FIXES
+=================================*/
+.clearfix:before, .clearfix:after { content: "\0020"; display: block; height: 0; overflow: hidden; }  
+.clearfix:after { clear: both; }  
+
+
+
+
+/* 
+
+
+media queries 
+
+ */
+
+
+@media screen and (max-width: 960px) {
+		
+		wrapper{
+		background-color: #FFF;
+		}
+		
+	#menu{
+		font-family: 'proxima_nova_rgbold', helvetica, sans-serif;
+		position:fixed;
+		padding:0;
+		margin:0;
+		float:left;
+		z-index:9999;
+		width: 100%;
+		height:200px;
+		background-image: url("images/cream_pixels.png");
+		background-repeat: repeat;
+		}
+		
+		
+		.main {
+		max-width: 82.667em;
+		min-height: 10em;
+		}
+		
+		h2 {
+			font-size: .75em;
+			line-height:1.5em;
+		}
+		
+		h3{
+    
+		font-size:.75em;
+		padding:1% 0 3% 0;
+		margin:0;
+		font-weight:normal;
+		}
+		
+		h5{
+		font-family: 'proxima_nova_ththin', helvetica, sans-serif;
+		font-size:2em;
+		line-height:1em;
+		padding:3% 0 1% 3%;
+		margin:0;
+		text-align: left;
+		font-weight:normal;
+		}
+		
+		body{
+		background-color: #fff;
+		margin:0;
+		padding:0;
+		}
+		
+		.projectdetail {
+		width:100%;
+		background-color:#DFDFE3;
+		margin:0;
+		padding:0;
+		float:left;
+		}
+
+		.project {
+		width:50%;
+		}
+
+		li {
+    	display: block;
+   	 padding: 0 4% 2% 0;
+    	font-size:1em;
+		}
+
+	}
+
+
+@media screen and (max-width: 768px) {
+
+	
+		#menu{
+		font-family: 'proxima_nova_rgbold', helvetica, sans-serif;
+		position:fixed;
+		margin:0;
+		float:left;
+		z-index:9999;
+		width: 100%;
+		height:150px;
+		background-image: url("images/cream_pixels.png");
+		background-repeat: repeat;
+		}
+	
+		.main {
+		max-width: 82.667em;
+		min-height: 25em;
+		}
+		
+		h1{
+		font-family: 'proxima_nova_ththin', helvetica, sans-serif;
+		color:#686E75;
+		font-size:1.45em;
+		line-height:1.3em;
+		padding:20% 2% 3% 2%;
+		margin:0;
+		text-align: left;
+		}
+		
+		h2 {
+			font-size: .65em;
+			line-height:1.5em;
+		}
+
+		h4{
+		font-family: 'proxima_nova_ththin', helvetica, sans-serif;
+		font-size:2em;
+		line-height:1em;
+		padding:0 0 0 0;
+		margin:1% 0 0 0;
+		text-align: left;
+		color:#686E75;
+		font-weight:normal;
+		}
+		
+		
+		
+		
+		
+		@media screen and (max-width: 480px) {
+
+		#about img {
+  		width: 50%;
+  		float: left;
+  		padding: 5% 2% 0 0;
+	}
+		
+		#menu{
+		font-family: 'proxima_nova_rgbold', helvetica, sans-serif;
+		position:fixed;
+		padding:0 0 3% 2%;
+		margin:0;
+		float:left;
+		z-index:9999;
+		width: 100%;
+		height:120px;
+		background-repeat: repeat;
+		}
+		
+		.main {
+		max-width: 82.667em;
+		min-height: 15em;
+		}
+		
+		h1{
+		visibility: hidden;
+				font-size:0;
+		}
+
+		h4{
+		width:480px;
+		font-family: 'proxima_nova_ththin', helvetica, sans-serif;
+		font-size:1.15em;
+		line-height:1em;
+		padding:1% 0 0 2%;
+		margin:1% 0 2% 0;
+		text-align: left;
+		color:#686E75;
+		font-weight:normal;
+		}
+
+		h5{
+		font-family: 'proxima_nova_ththin', helvetica, sans-serif;
+		font-size:2em;
+		line-height:1em;
+		padding:8% 0 1% 3%;
+		
+		}
+
+		.persist-header ul{
+			padding:0 0 0 0;
+			margin:0 5% 2% 2%;
+			float:left;
+			font-size:1em;
+			line-height: .75em;
+			background-image: url("images/cream_pixels.png");
+			background-repeat: repeat;
+		}
+
+
+		.persist-header li {
+			display:inline;
+			padding: 1% 3% 2% .5%;
+			float:left;
+			font-size:.75em;
+			line-height: 1em;
+			background-color:#fff;
+
+		}
+
+
+		.project {
+			width:50%;
+		}
+		
+		p{
+			font-size:1.15em;
+			line-height:1.35em;
+			margin-top:4%;
+		}
+			
+		h5 {
+			font-size: 2em;
+			line-height:1em;
+		}
+		
+		.projectdetail {
+		width:100%;
+		background-color:#DFDFE3;
+		margin:0;
+		padding:0;
+		float:left;
+		}
+		
+		
+		#social{
+    	font-family: 'proxima_nova_rgbold', helvetica, sans-serif;
+		font-size:1.10em;
+		padding:0 0 0 0;
+		margin:2% 0 1% 0;
+		width:100%;
+		float:left;
+		text-align:right;
+		}
+		
+		.anchor {
+    	font-family: 'proxima_nova_ltlight', helvetica, sans-serif;
+    	padding:0 0 1% 2%;
+    	font-size:.85em;
+		}
+
+
+		.titles{
+		font-size:1em;
+		line-height:.25em;
+		}
+		
+		.titleplus{
+		font-size:.65em;
+		line-height:1em;
+
+		}
+
+
+
+
+		@media screen and (max-width: 320px) {
+
+
+		#grid {
+		margin:20% 0 0 0;
+		padding:0;
+		}
+
+		#about img {
+  		width: 100%;
+  		float: left;
+  		padding: 25% 2% 0 0;
+		}
+		
+		
+		#menu{
+		font-family: 'proxima_nova_ththin', helvetica, sans-serif;
+		position:fixed;
+		padding:0 3% 3% 2%;
+		margin:0;
+		float:left;
+		z-index:9999;
+		width: 320px;
+		height:150px;
+		}
+
+		
+		.main {
+		max-width: 82.667em;
+		min-height: 15em;
+		}
+
+		h4{
+		width:480px;
+		font-family: 'proxima_nova_ththin', helvetica, sans-serif;
+		font-size:2.75em;
+		line-height:1em;
+		padding:0 2% 0 0;
+		margin:1% 0 2% 0;
+		text-align: left;
+		color:#686E75;
+		font-weight:normal;
+		}
+
+		h5{
+		font-family: 'proxima_nova_ththin', helvetica, sans-serif;
+		font-size:1.35em;
+		line-height:1em;
+		padding:10% 0 1% 3%;
+		
+		}
+
+		.persist-header ul{
+			padding:0 0 0 0;
+			margin:0 5% 2% 0;
+			float:left;
+			font-size:1em;
+			line-height: .75em;
+			background-repeat: repeat;
+			text-align: left;
+		}
+
+
+		.persist-header li {
+			display:block;
+			padding: 2% 2% 2% 0;
+			float:left;
+			font-size:.75em;
+			line-height: 1em;
+			text-align: left;
+			background-color:#fff;
+		}
+
+
+		.project {
+			width:100%;
+		}
+		
+		p{
+			margin:2%;
+			padding:0 0 0 0;
+			font-size:1em;
+			line-height:1.35em;
+		}
+			
+		
+		.projectdetail {
+		width:100%;
+		background-color:#DFDFE3;
+		margin:0;
+		padding:0;
+		float:left;
+		}
+		
+		
+		#social{
+    	font-family: 'proxima_nova_rgbold', helvetica, sans-serif;
+		font-size:1.10em;
+		padding:0 0 0 0;
+		margin:2% 0 1% 0;
+		width:100%;
+		float:left;
+		text-align:right;
+		}
+		
+		.anchor {
+    	font-family: 'proxima_nova_ltlight', helvetica, sans-serif;
+    	padding:0 0 1% 2%;
+    	font-size:.85em;
+		}
+
+
+		.titles{
+		visibility: hidden;
+		font-size:0;
+		line-height: .25;
+		}
+		
+		.titleplus{
+		visibility: hidden;
+		font-size:0;
+
+		}
+		
+		.dividerx{
+	   	visibility: hidden;
+	   	font-size:0;
+
+		}
+
+}
+
+
+
+
+@media screen and (max-width: 25em) { 
+	.codrops-icon span {
+		display: none;
+	}
+	
+	.main {
+	max-width: 82.667em;
+	min-height: 14em;
+}
+	.container > header {
+		font-size: 75%;
+	}
+	
+	#paneld {
+	background: #fff;
+	padding-bottom: 6%;
+}
+
+
+
+
+}
+
